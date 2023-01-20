@@ -1,26 +1,26 @@
 #include <unistd.h>
 
-int	ft_cts(int c)
+char	ft_mirror(char c)
 {
 	if ((c >= 65) && (c <= 90))
-		return (c + 32);
+		return ('Z' + 'A' - c);
+	else if ((c >= 97) && (c <= 122))
+		return ('z' + 'a' - c);
 	else
-		return (c);	
+		return (c);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	c;
+	int		i;
+	char	c;
 
 	i = 0;
 	if (argc == 2)
 	{
 		while (argv[1][i] != '\0')
 		{
-			c = ft_cts(argv[1][i]);
-			if (c != argv[1][i])
-				write(1, "_", 1);
+			c = ft_mirror(argv[1][i]);
 			write(1, &c, 1);
 			i++;
 		}
