@@ -1,4 +1,4 @@
 unsigned char	swap_bits(unsigned char octet)
 {
-	return((octec >> 4) | (octec << 4));
+	return ((octet >> 4) | (octet << 4));
 }

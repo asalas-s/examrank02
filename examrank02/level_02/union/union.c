@@ -28,13 +28,18 @@ int	main(int argc, char **argv)
 	{
 		while ((argv[1][i]) != '\0')
 		{
-			while ((argv[2][j]) != '\0')
+			if (ft_charinstr(argv[1], argv[1][i]) == i)
+				write (1, &argv[1][i], 1);
+			i++;
+		}
+		i = 0;
+		while ((argv[2][i]) != '\0')
+		{
+			if (ft_charinstr(argv[1], argv[2][i]) == -1)
 			{
-				if (((argv[1][i]) == (argv[2][j])) && (ft_charinstr(argv[1], argv[1][i]) == i) && (ft_charinstr(argv[2], argv[2][j]) == j))
-					write (1, &argv[1][i], 1);
-				j++;
+				if (ft_charinstr(argv[2], argv[2][i]) == i)
+					write (1, &argv[2][i], 1);
 			}
-			j = 0;
 			i++;
 		}
 	}

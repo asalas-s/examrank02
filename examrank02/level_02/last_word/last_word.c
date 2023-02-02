@@ -19,34 +19,23 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_last_word(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (len == 0)
-		return (str);
-	len--;
-	while (ft_issep(str[len]) && (len > 0))
-		len--;
-	while ((ft_issep(str[len]) == 0) && (len >= 0))
-		len--;
-	return (&str[len + 1]);
-}
-
 int	main(int argc, char **argv)
 {
-	char	*lw;
-	int		i;
+	int		len;
+	int		end;
 
 	if (argc == 2)
 	{
-		lw = ft_last_word(argv[1]);
-		i = 0;
-		while (ft_issep(lw[i]) == 0)
+		len = ft_strlen(argv[1]);
+		if (len != 0)
 		{
-			write(1, &lw[i], 1);
-			i++;
+			len--;
+			while (ft_issep(argv[1][len]) && (len > 0))
+				len--;
+			end = len;
+			while ((ft_issep(argv[1][len]) == 0) && (len >= 0))
+				len--;
+			write(1, &argv[1][len + 1], end - len);
 		}
 	}
 	write(1, "\n", 1);

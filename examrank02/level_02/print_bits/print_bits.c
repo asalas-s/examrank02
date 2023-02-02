@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-void print_bits(unsigned char octec)
+void	print_bits(unsigned char octec)
 {
 	int	i;
 	unsigned char	bit;
@@ -12,4 +12,3 @@ void print_bits(unsigned char octec)
 		write(1, &bit, 1);
 	}
 }
-
