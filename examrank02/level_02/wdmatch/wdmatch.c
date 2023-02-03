@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int	ft_charinstr(char *str, char c)
+char	*ft_charinstr(char *str, char c)
 {
 	int	i;
 
@@ -8,13 +8,10 @@ int	ft_charinstr(char *str, char c)
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
-			return (i);
-	i++;
+			return (&str[i]);
+		i++;
 	}
-	if (c == '\0')
-		return (i);
-	else
-		return (-1);
+	return (NULL);
 }
 
 int	ft_strlen(char *str)
@@ -29,33 +26,26 @@ int	ft_strlen(char *str)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	len1;
-	int	len2;
-	int	pos;
-	int	ant;
+	int		i;
+	char	*pos;
 
 	i = 0;
-	pos = 0;
-	ant = 0;
-	len1 = ft_strlen(argv[1]);
-	len2 = ft_strlen(argv[2]);
 	if (argc == 3)
 	{
+		pos = argv[2];
 		while ((argv[1][i]) != '\0')
 		{
-			pos = ft_charinstr(argv[2], argv[1][i]);
-			if (pos == -1)
-				break ;
-			if ((pos > ant) && (pos < len2))
+			pos = ft_charinstr(pos, argv[1][i]);
+			if (pos != NULL)
 			{
-				ant = pos;
 				i++;
+				pos++;
 			}
 			else
 				break ;
 		}
-		write (1, argv[1], len1);
+		if (pos != NULL)
+			write(1, argv[1], ft_strlen(argv[1]));
 	}
 	write(1, "\n", 1);
 }
