@@ -23,6 +23,25 @@ int	ft_charinstr(char c, char *str)
 	return (-1);
 }
 
+char	ft_tolower(char c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	else
+		return (c);
+}
+
+int	ft_isvalidchar(char c, int str_base)
+{
+	int	pos;
+
+	pos = ft_charinstr(ft_tolower(c), "0123456789abcdef");
+	if ((pos != -1) && (pos < str_base))
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_atoi_base(const char *str, int str_base)
 {
 	int	i;
@@ -33,38 +52,31 @@ int	ft_atoi_base(const char *str, int str_base)
 	i = 0;
 	n = 0;
 	sign = 1;
-	while (str[i] != '\0')
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
 	{
-		while (ft_isspace(str[i]))
-			i++;
-		if (str[i] == '-')
-		{
-			sign = -1;
-			i++;
-		}
-		else if (str[i] == '+')
-			i++;
-		b = ft_charinstr(str[i], "0123456789abcde");
-		while ((b != -1) && (b < str_base) && (str[i] != '\0'))
-		{
-			n = ((n * str_base) + b);
-			i++;
-			b = ft_charinstr(str[i], "0123456789abcde");
-		}
+		sign = -1;
+		i++;
 	}
-	if ((b != -1) && (b < str_base))
-		return (n * sign);
-	else
-		return (0);
+	while (ft_isvalidchar(str[i], str_base) == 1)
+	{
+		b = ft_charinstr(ft_tolower(str[i]), "0123456789abcdef");
+		n = ((n * str_base) + b);
+		i++;
+	}
+	return (n * sign);
 }
 
 int	main(int argc, char **argv)
 {
 	int	number;
+	int	base;
 
-	if (argc == 2)
+	if (argc == 3)
 	{
-		number = ft_atoi_base(argv [1], 2);
-		printf("%s , en base 2 es %d\n", argv[1], number);
+		base = ft_atoi_base(argv[2], 10);
+		number = ft_atoi_base(argv [1], base);
+		printf("%s , en base %s es %d\n", argv[1], argv[2], number);
 	}
 }
