@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <unistd.h>
+
 int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || c == ' ')
@@ -25,7 +28,7 @@ int	ft_atoi_base(const char *str, int str_base)
 	int	i;
 	int	n;
 	int	sign;
-	int b;
+	int	b;
 
 	i = 0;
 	n = 0;
@@ -42,12 +45,26 @@ int	ft_atoi_base(const char *str, int str_base)
 		else if (str[i] == '+')
 			i++;
 		b = ft_charinstr(str[i], "0123456789abcde");
-		while ((b != -1) && (str[i] != '\0'))
+		while ((b != -1) && (b < str_base) && (str[i] != '\0'))
 		{
 			n = ((n * str_base) + b);
 			i++;
 			b = ft_charinstr(str[i], "0123456789abcde");
 		}
 	}
-	return (n * sign);
+	if ((b != -1) && (b < str_base))
+		return (n * sign);
+	else
+		return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	int	number;
+
+	if (argc == 2)
+	{
+		number = ft_atoi_base(argv [1], 2);
+		printf("%s , en base 2 es %d\n", argv[1], number);
+	}
 }
