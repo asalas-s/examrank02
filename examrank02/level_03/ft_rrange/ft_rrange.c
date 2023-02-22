@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int	*ft_range(int start, int end)
+int	*ft_rrange(int start, int end)
 {
 	int	len;
 	int	*range;
@@ -11,19 +11,19 @@ int	*ft_range(int start, int end)
 	int	step;
 
 	i = 0;
-	value = start;
+	value = end;
 	if (end >= start)
 	{
 		len = end - start + 1;
-		step = 1;
+		step = -1;
 	}
 	else
 	{
 		len = start - end + 1;
-		step = -1;
+		step = 1;
 	}
 	range = (int *)malloc((len) * sizeof(int *));
-	while (value != end + step)
+	while (value != start + step)
 	{
 		range[i] = value;
 		value = value + step;
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	{
 		start = atoi(argv[1]);
 		end = atoi(argv[2]);
-		range = ft_range(start, end);
+		range = ft_rrange(start, end);
 		if (end >= start)
 			len = end - start + 1;
 		else
