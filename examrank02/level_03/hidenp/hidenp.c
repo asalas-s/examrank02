@@ -1,18 +1,14 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int	ft_charinstr(char *str, char c)
+int	ft_charinstr(char c, char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-	i++;
-	}
-	if (c == '\0')
+	while ((str[i] != '\0') && (str[i] != c))
+		i++;
+	if (str[i] == c)
 		return (i);
 	else
 		return (-1);
@@ -21,28 +17,21 @@ int	ft_charinstr(char *str, char c)
 int	main(int argc, char **argv)
 {
 	int	i;
-	int	prev;
-	int	pos;
+	int	j;
 
 	i = 0;
-	prev = 0;
-	pos = 0;
+	j = 0;
 	if (argc == 3)
 	{
-		while ((argv[1][i]) != '\0')
+		while ((j != -1) && (argv[1][i] != '\0'))
 		{
-			pos = ft_charinstr(&argv[2][prev], argv[1][i]);
-			if (pos != -1)
-				prev = prev + pos + 1;
-			else
-				break ;
+			j = ft_charinstr(argv[1][i], &argv[2][j]);
 			i++;
 		}
-		if (pos != -1)
-			write(1, "1\n", 2);
+		if (argv[1][i] == '\0')
+			ft_putchar('1');
 		else
-			write(1, "0\n", 2);
+			ft_putchar('0');
 	}
-	else
-		write(1, "\n", 1);
+	ft_putchar('\n');
 }
