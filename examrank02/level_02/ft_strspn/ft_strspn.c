@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 size_t	ft_strspn(const char *s, const char *accept)
 {
 	int	i;
@@ -25,4 +27,3 @@ size_t	ft_strspn(const char *s, const char *accept)
 	}
 	return (i);
 }
-

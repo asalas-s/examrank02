@@ -6,7 +6,7 @@ int	is_power_of_2(unsigned int n)
 	{
 		n = (n / 2);
 	}
-	if n
+	if (n)
 		return (0);
 	else
 		return (1);
