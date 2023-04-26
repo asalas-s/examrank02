@@ -14,13 +14,12 @@ int	ft_charinstr(char c, char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-	{
-		if (c == str[i])
-			return (i);
+	while ((str[i] != '\0') && (c != str[i]))
 		i++;
-	}
-	return (-1);
+	if (c == str[i])
+		return (i);
+	else
+		return (-1);
 }
 
 char	ft_tolower(char c)
