@@ -44,13 +44,15 @@ void	ft_rcapitalizer(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		while (ft_isspace(str[i]) && (str[i] != '\0'))
-		{
-			ft_putchar(str[i]);
+		while (ft_isspace(str[i]))
 			i++;
-		}
-		while ((ft_isspace(str[i]) == 0) && (str[i] != '\0'))
+		while (ft_isspace(str[i]) == 0)
 		{
+			if (((str[i + 1]) == '\0') || ft_isspace(str[i + 1])) 
+				ft_putupper(str[i]);
+			else
+				ft_putlower(str[i]);
+			i++;
 		}
 	}
 }
