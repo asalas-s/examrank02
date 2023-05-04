@@ -13,14 +13,6 @@ int	ft_isspace(char c)
 		return (0);
 }
 
-int	ft_isalpha(char c)
-{
-	if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z')))
-		return (1);
-	else
-		return (0);
-}
-
 void	ft_putlower(char c)
 {
 	if (((c >= 'A') && (c <= 'Z')))
@@ -45,8 +37,11 @@ void	ft_rcapitalizer(char *str)
 	while (str[i] != '\0')
 	{
 		while (ft_isspace(str[i]))
+		{
+			ft_putchar(str[i]);
 			i++;
-		while (ft_isspace(str[i]) == 0)
+		}
+		while ((ft_isspace(str[i]) == 0) && (str[i] != '\0'))
 		{
 			if (((str[i + 1]) == '\0') || ft_isspace(str[i + 1])) 
 				ft_putupper(str[i]);
